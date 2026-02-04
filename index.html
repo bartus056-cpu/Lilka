@@ -5,13 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>💘 Walentynkowe pytanie dla Lilki 💘</title>
     
-    <!-- Dodaj EmailJS -->
+    <!-- EmailJS -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script type="text/javascript">
-        // Inicjalizacja EmailJS z Twoim Public Key
-        (function() {
-            emailjs.init("mwdIn3kCQ1fVhJl9u");
-        })();
+        // Inicjalizuj EmailJS z TWOIM kluczem
+        emailjs.init('mwdIn3kCQ1fVhJl9u');
     </script>
     
     <style>
@@ -23,41 +21,23 @@
         
         body {
             background: linear-gradient(135deg, #ffafcc 0%, #ffc8dd 25%, #cdb4db 50%, #bde0fe 75%, #a2d2ff 100%);
-            font-family: 'Arial Rounded MT Bold', 'Segoe UI', sans-serif;
+            font-family: 'Arial', sans-serif;
             text-align: center;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
-            overflow-x: hidden;
         }
         
         .container {
             background: white;
             padding: 40px 30px;
-            border-radius: 30px;
-            box-shadow: 
-                0 20px 40px rgba(255, 0, 110, 0.2),
-                0 0 0 15px #ffebf0,
-                0 0 0 20px #ff8fab;
-            max-width: 700px;
-            width: 95%;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(255, 0, 110, 0.25);
             border: 5px solid #ff4d6d;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .container::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 12px;
-            background: linear-gradient(90deg, 
-                #ff006e 0%, #ff4d6d 25%, #ff8fab 50%, #ffb3c6 75%, #ffccd5 100%);
-            z-index: 2;
+            max-width: 600px;
+            width: 95%;
         }
         
         h1 {
@@ -67,288 +47,115 @@
         }
         
         .lilki-name {
+            font-size: 48px;
             color: #ff006e;
-            font-size: 52px;
-            font-weight: 900;
-            text-shadow: 
-                2px 2px 0 #ff8fab,
-                4px 4px 0 rgba(0,0,0,0.1);
-            background: linear-gradient(45deg, #ff006e, #ff4d6d, #ff8fab);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin: 15px 0;
-            padding: 10px 30px;
-            display: inline-block;
-            border-radius: 20px;
-            position: relative;
-            animation: namePulse 2s infinite alternate;
-        }
-        
-        .lilki-name::after {
-            content: "💝";
-            position: absolute;
-            right: -15px;
-            top: -15px;
-            font-size: 40px;
-            animation: heartFloat 3s ease-in-out infinite;
-        }
-        
-        .question-container {
-            background: linear-gradient(145deg, #fff0f3, #fff9fb);
-            padding: 30px 25px;
-            border-radius: 25px;
-            margin: 30px 0;
-            border: 3px solid #ffb3c6;
-            position: relative;
-            box-shadow: inset 0 0 20px rgba(255, 0, 110, 0.1);
+            font-weight: bold;
+            margin: 20px 0;
+            text-shadow: 2px 2px 0 #ffb3c6;
         }
         
         .question {
-            font-size: 36px;
-            color: #c9184a;
-            font-weight: 800;
-            line-height: 1.3;
-            margin: 0;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .question::before, .question::after {
-            content: "💖";
             font-size: 32px;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            animation: spin 4s linear infinite;
+            color: #c9184a;
+            margin: 30px 0;
+            padding: 25px;
+            background: #fff0f3;
+            border-radius: 20px;
+            border: 3px dashed #ff8fab;
         }
         
-        .question::before {
-            left: -45px;
+        .buttons {
+            margin: 40px 0;
         }
         
-        .question::after {
-            right: -45px;
-            animation-direction: reverse;
-        }
-        
-        .buttons-container {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            margin: 40px 0 30px;
-            flex-wrap: wrap;
-            position: relative;
-            z-index: 10;
-        }
-        
-        .btn {
-            font-size: 28px;
-            font-weight: 900;
-            padding: 20px 60px;
+        button {
+            font-size: 26px;
+            padding: 18px 50px;
+            margin: 15px;
             border: none;
-            border-radius: 70px;
+            border-radius: 60px;
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 12px 25px rgba(0,0,0,0.2);
-            min-width: 180px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .btn::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
-            transition: left 0.7s;
-        }
-        
-        .btn:hover::before {
-            left: 100%;
+            font-weight: bold;
+            transition: all 0.3s;
+            min-width: 160px;
         }
         
         #yesBtn {
-            background: linear-gradient(145deg, #ff006e, #ff4d6d, #ff8fab);
+            background: linear-gradient(145deg, #ff006e, #ff4d6d);
             color: white;
             border: 4px solid #ff4d6d;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-            z-index: 5;
         }
         
         #yesBtn:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 20px 35px rgba(255, 0, 110, 0.4);
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(255, 0, 110, 0.3);
         }
         
         #noBtn {
             background: linear-gradient(145deg, #ffb3c6, #ffccd5);
             color: #a4133c;
             border: 4px solid #ff8fab;
-            font-weight: 800;
         }
         
         #noBtn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 25px rgba(255, 143, 171, 0.3);
+            transform: scale(1.05);
         }
         
-        #successContainer {
+        #success {
             display: none;
-            margin-top: 30px;
-            animation: fadeIn 1s ease;
+            margin-top: 40px;
+            animation: fadeIn 1s;
         }
         
-        .success-heart {
-            font-size: 120px;
+        .heart {
+            font-size: 100px;
             color: #ff006e;
-            margin-bottom: 20px;
-            animation: 
-                heartbeat 1.2s ease-in-out infinite,
-                floatUp 3s ease-in-out infinite;
-            filter: drop-shadow(0 0 20px rgba(255, 0, 110, 0.5));
+            margin: 20px 0;
+            animation: heartbeat 1.2s infinite;
         }
         
-        .success-text {
-            font-size: 32px;
-            color: #ff006e;
-            font-weight: 900;
-            text-shadow: 2px 2px 0 #ffb3c6;
-            margin-top: 15px;
-            background: linear-gradient(45deg, #ff006e, #ff4d6d);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .bartek-signature {
-            margin-top: 25px;
-            padding-top: 20px;
-            border-top: 3px dashed #ff8fab;
-        }
-        
-        .bartek-text {
+        .message {
             font-size: 28px;
-            color: #ff4d6d;
-            font-weight: 800;
-            text-shadow: 1px 1px 0 #ffb3c6;
-            background: linear-gradient(to right, #ff006e, #ff4d6d);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: 2px;
-            position: relative;
-            display: inline-block;
-            padding: 0 15px;
-            animation: bartekGlow 3s infinite alternate;
+            color: #ff006e;
+            font-weight: bold;
+            margin: 20px 0;
         }
         
-        .bartek-text::before {
-            content: "💘";
-            position: absolute;
-            left: -35px;
-            top: 50%;
-            transform: translateY(-50%);
+        .bartek {
             font-size: 24px;
-            animation: spin 4s linear infinite;
+            color: #c9184a;
+            margin-top: 20px;
+            font-weight: bold;
         }
         
-        .bartek-text::after {
-            content: "💘";
-            position: absolute;
-            right: -35px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 24px;
-            animation: spin 4s linear infinite reverse;
-        }
-        
-        #sorryMessage {
+        #sorry {
             color: #c9184a;
             font-size: 22px;
-            font-weight: 700;
-            padding: 18px 25px;
-            background: linear-gradient(to right, #ffebf0, #fff5f7);
-            border-radius: 18px;
-            border-left: 6px solid #ff4d6d;
+            font-weight: bold;
+            padding: 15px;
+            background: #ffebee;
+            border-radius: 15px;
+            margin-top: 20px;
             display: none;
-            animation: messagePop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 8px 20px rgba(255, 0, 110, 0.15);
-            margin: 0 auto;
-            max-width: 90%;
         }
         
-        /* Animacje */
-        @keyframes namePulse {
-            0% {
-                transform: scale(1) rotate(-1deg);
-                text-shadow: 2px 2px 0 #ff8fab, 4px 4px 0 rgba(0,0,0,0.1);
-            }
-            100% {
-                transform: scale(1.05) rotate(1deg);
-                text-shadow: 
-                    2px 2px 0 #ff8fab, 
-                    4px 4px 0 rgba(0,0,0,0.1),
-                    0 0 30px rgba(255, 0, 110, 0.5);
-            }
-        }
-        
-        @keyframes heartFloat {
-            0%, 100% {
-                transform: translateY(0) rotate(0deg);
-            }
-            50% {
-                transform: translateY(-20px) rotate(10deg);
-            }
-        }
-        
-        @keyframes spin {
-            0% {
-                transform: translateY(-50%) rotate(0deg);
-            }
-            100% {
-                transform: translateY(-50%) rotate(360deg);
-            }
+        /* Przycisk testowy - możesz później usunąć */
+        .test-btn {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            z-index: 1000;
         }
         
         @keyframes heartbeat {
-            0%, 100% {
-                transform: scale(1);
-            }
-            10%, 30% {
-                transform: scale(1.1);
-            }
-            20%, 40% {
-                transform: scale(1.15);
-            }
-            50% {
-                transform: scale(1);
-            }
-        }
-        
-        @keyframes floatUp {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-20px);
-            }
-        }
-        
-        @keyframes messagePop {
-            0% {
-                opacity: 0;
-                transform: translateY(20px) scale(0.8);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
         }
         
         @keyframes fadeIn {
@@ -356,388 +163,222 @@
             to { opacity: 1; }
         }
         
-        @keyframes bartekGlow {
-            0% {
-                text-shadow: 1px 1px 0 #ffb3c6;
-            }
-            100% {
-                text-shadow: 
-                    1px 1px 0 #ffb3c6,
-                    0 0 20px rgba(255, 0, 110, 0.5),
-                    0 0 30px rgba(255, 77, 109, 0.3);
-            }
-        }
-        
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            10%, 30%, 50%, 70%, 90% { transform: translateX(-8px); }
-            20%, 40%, 60%, 80% { transform: translateX(8px); }
-        }
-        
-        /* Responsywność */
-        @media (max-width: 768px) {
+        @media (max-width: 600px) {
             .container {
-                padding: 30px 20px;
+                padding: 25px 20px;
             }
             
-            .lilki-name {
-                font-size: 42px;
-                padding: 8px 20px;
-            }
-            
-            .question {
-                font-size: 30px;
-            }
-            
-            .btn {
-                font-size: 24px;
-                padding: 18px 45px;
-                min-width: 150px;
-            }
-            
-            .buttons-container {
-                gap: 15px;
-            }
-            
-            .success-heart {
-                font-size: 90px;
-            }
-            
-            .success-text {
-                font-size: 26px;
-            }
-            
-            .bartek-text {
-                font-size: 24px;
-            }
-        }
-        
-        @media (max-width: 480px) {
             .lilki-name {
                 font-size: 36px;
             }
             
             .question {
                 font-size: 26px;
+                padding: 20px;
             }
             
-            .question::before, .question::after {
-                font-size: 24px;
-            }
-            
-            .question::before {
-                left: -30px;
-            }
-            
-            .question::after {
-                right: -30px;
-            }
-            
-            .btn {
+            button {
                 font-size: 22px;
-                padding: 16px 35px;
-                min-width: 130px;
+                padding: 15px 35px;
+                min-width: 140px;
             }
             
-            .buttons-container {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            #yesBtn, #noBtn {
-                width: 90%;
-                max-width: 280px;
-            }
-            
-            .bartek-text {
-                font-size: 22px;
-            }
-            
-            .bartek-text::before,
-            .bartek-text::after {
-                font-size: 20px;
-                left: -25px;
-                right: -25px;
+            .heart {
+                font-size: 80px;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Przycisk testowy - USUŃ go jak wszystko będzie działać -->
+    <div class="test-btn" onclick="testEmail()">TEST Email</div>
+    
     <div class="container">
         <h1>Specjalnie dla:</h1>
-        <div class="lilki-name">LILKI</div>
+        <div class="lilki-name">LILKI 💝</div>
         
-        <div class="question-container">
-            <div class="question" id="question">
-                Czy zostaniesz moją walentynką?
-            </div>
+        <div class="question">
+            Czy zostaniesz moją walentynką?
         </div>
         
-        <div class="buttons-container">
-            <button class="btn" id="yesBtn">TAK 💝</button>
-            <button class="btn" id="noBtn">NIE</button>
+        <div class="buttons">
+            <button id="yesBtn">TAK 💖</button>
+            <button id="noBtn">NIE</button>
         </div>
         
-        <div id="sorryMessage"></div>
+        <div id="sorry"></div>
         
-        <div id="successContainer">
-            <div class="success-heart">❤️</div>
-            <div class="success-text">Wiedziałem, że się zgodzisz! 💖</div>
-            <div class="bartek-signature">
-                <div class="bartek-text">Bartek</div>
-            </div>
+        <div id="success">
+            <div class="heart">❤️</div>
+            <div class="message">Wiedziałem, że się zgodzisz! 💘</div>
+            <div class="bartek">Bartek</div>
         </div>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const yesBtn = document.getElementById('yesBtn');
-            const noBtn = document.getElementById('noBtn');
-            const sorryMessage = document.getElementById('sorryMessage');
-            const successContainer = document.getElementById('successContainer');
-            const questionContainer = document.querySelector('.question-container');
+        // ===== KONFIGURACJA EMAILJS =====
+        const SERVICE_ID = 'service_ts4zyfh';
+        const TEMPLATE_ID = 'ethgzcu';
+        const PUBLIC_KEY = 'mwdIn3kCQ1fVhJl9u';
+        
+        // ===== ZMIENNE =====
+        let noClicks = 0;
+        let yesClicked = false;
+        
+        // Wiadomości gdy kliknie NIE
+        const messages = [
+            "Nie rób mi tego... 💔",
+            "Nie możesz tak powiedzieć!",
+            "Proszę, przemyśl to! 🤔",
+            "Jesteś pewna? 🥺",
+            "Będę bardzo smutny... 😢",
+            "Serio tak mówisz? 💔",
+            "Lilki, bez Ciebie walentynki nie mają sensu!",
+            "Proszę, powiedz TAK! 🙏",
+            "Złamię Ci serce? 💘",
+            "Ostatnia szansa... TAK?",
+            "💖 DLA LILKI TYLKO TAK 💖"
+        ];
+        
+        // ===== FUNKCJA WYSYŁAJĄCA EMAIL =====
+        function sendValentineEmail(actionType, clickCount = 0) {
+            console.log('🔄 Wysyłam email:', actionType, 'kliknięcia NIE:', clickCount);
             
-            let noClicks = 0;
-            let yesClicked = false;
-            
-            // EMAILJS KONFIGURACJA - Twoje dane!
-            const EMAILJS_CONFIG = {
-                SERVICE_ID: 'service_ts4zyfh',      // Twój Service ID
-                TEMPLATE_ID: 'ethgzcu',             // Twój Template ID
-                PUBLIC_KEY: 'mwdIn3kCQ1fVhJl9u',    // Twój Public Key
-                YOUR_EMAIL: 'bartus056@gmail.com'   // Twój email
+            // Dane które muszą pasować do szablonu w EmailJS
+            const templateParams = {
+                answer: actionType,
+                date: new Date().toLocaleDateString('pl-PL'),
+                time: new Date().toLocaleTimeString('pl-PL'),
+                no_clicks: clickCount,
+                to_email: 'bartus056@gmail.com',
+                from_name: 'Strona Walentynkowa',
+                reply_to: 'noreply@walentynka.com'
             };
             
-            // Wiadomości gdy kliknie NIE
-            const messages = [
-                "Nie rób mi tego... 💔",
-                "Nie możesz tak powiedzieć!",
-                "Proszę, przemyśl to! 🤔",
-                "Jesteś pewna? 🥺",
-                "Będę bardzo smutny... 😢",
-                "Serio tak mówisz? 💔",
-                "Lilki, bez Ciebie walentynki nie mają sensu!",
-                "Proszę, powiedz TAK! 🙏",
-                "Złamię Ci serce? 💘",
-                "Ostatnia szansa... TAK?",
-                "💖 DLA LILKI TYLKO TAK 💖",
-                "Walentynki bez Ciebie? Niemożliwe!",
-                "Mam nadzieję, że zmienisz zdanie!",
-                "💝 TAK = szczęście 💝",
-                "Wiem, że chcesz powiedzieć TAK! 😉"
-            ];
-            
-            // Funkcja wysyłająca email
-            function sendEmail(action) {
-                const templateParams = {
-                    answer: action,
-                    date: new Date().toLocaleDateString('pl-PL'),
-                    time: new Date().toLocaleTimeString('pl-PL'),
-                    no_clicks: noClicks,
-                    to_email: EMAILJS_CONFIG.YOUR_EMAIL,
-                    name: 'System Powiadomień Walentynkowych',
-                    email: 'noreply@walentynka.com'
-                };
-                
-                emailjs.send(
-                    EMAILJS_CONFIG.SERVICE_ID,
-                    EMAILJS_CONFIG.TEMPLATE_ID,
-                    templateParams
-                )
+            // Wyślij email przez EmailJS
+            emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams)
                 .then(function(response) {
-                    console.log('✅ Email wysłany! Status:', response.status);
-                }, function(error) {
-                    console.log('❌ Błąd wysyłania email:', error);
-                    // Zapisz w localStorage na wypadek błędu
-                    localStorage.setItem('walentynka_ostatnia_akcja', 
-                        JSON.stringify({
-                            action: action,
-                            timestamp: new Date().toISOString(),
-                            noClicks: noClicks
-                        })
-                    );
+                    console.log('✅ EMAIL WYSŁANY! Status:', response.status);
+                    console.log('Odpowiedź serwera:', response.text);
+                })
+                .catch(function(error) {
+                    console.log('❌ BŁĄD WYSYŁANIA EMAIL:', error);
+                    console.log('Szczegóły błędu:', JSON.stringify(error));
                 });
+        }
+        
+        // ===== FUNKCJA TESTOWA =====
+        function testEmail() {
+            console.log('🧪 Rozpoczynam test EmailJS...');
+            alert('Testuję wysyłanie emaila... Sprawdź konsolę F12');
+            
+            sendValentineEmail('TEST z przycisku', 999);
+        }
+        
+        // ===== OBSŁUGA PRZYCISKÓW =====
+        document.getElementById('yesBtn').addEventListener('click', function() {
+            if (!yesClicked) {
+                yesClicked = true;
+                
+                // 1. Wyślij email o kliknięciu TAK
+                sendValentineEmail('KLIKNĘŁA TAK! 🎉❤️🎊', noClicks);
+                
+                // 2. Pokaż sukces
+                document.querySelector('.question').style.display = 'none';
+                document.querySelector('.buttons').style.display = 'none';
+                document.getElementById('sorry').style.display = 'none';
+                document.getElementById('success').style.display = 'block';
+                
+                // 3. Animacja przycisku TAK
+                this.style.transform = 'scale(1.5)';
+                this.style.opacity = '0.7';
+                setTimeout(() => {
+                    this.style.display = 'none';
+                }, 500);
+                
+                // 4. Dodaj konfetti
+                createConfetti();
             }
-            
-            // Kliknięcie TAK
-            yesBtn.addEventListener('click', function() {
-                if (!yesClicked) {
-                    yesClicked = true;
-                    
-                    // Wyślij email "TAK"
-                    sendEmail('KLIKNĘŁA TAK! 🎉🎊❤️');
-                    
-                    // Pokaż sukces
-                    questionContainer.style.display = 'none';
-                    document.querySelector('.buttons-container').style.display = 'none';
-                    sorryMessage.style.display = 'none';
-                    successContainer.style.display = 'block';
-                    
-                    // Animacja przycisku TAK
-                    yesBtn.style.transform = 'scale(1.8)';
-                    yesBtn.style.opacity = '0.9';
-                    yesBtn.style.transition = 'all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
-                    
-                    // Dodaj konfetti efekt
-                    createConfetti();
-                    
-                    setTimeout(() => {
-                        yesBtn.style.display = 'none';
-                    }, 800);
-                }
-            });
-            
-            // Kliknięcie NIE
-            noBtn.addEventListener('click', function() {
-                noClicks++;
-                
-                // Ogranicz rozmiar przycisku TAK
-                if (!yesClicked) {
-                    const currentFontSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
-                    
-                    if (currentFontSize < 50) {
-                        yesBtn.style.fontSize = (currentFontSize + 4) + 'px';
-                    }
-                    
-                    const currentPadding = parseFloat(window.getComputedStyle(yesBtn).paddingLeft);
-                    if (currentPadding < 80) {
-                        yesBtn.style.padding = '20px ' + (currentPadding + 10) + 'px';
-                    }
-                    
-                    if (currentFontSize >= 45) {
-                        yesBtn.style.fontSize = '42px';
-                        yesBtn.style.padding = '25px 70px';
-                    }
-                }
-                
-                // Zmień wiadomość
-                const messageIndex = Math.min(noClicks - 1, messages.length - 1);
-                sorryMessage.textContent = messages[messageIndex];
-                sorryMessage.style.display = 'block';
-                sorryMessage.style.animation = 'messagePop 0.5s, shake 0.5s';
-                
-                // Uciekający przycisk NIE
-                const maxDistance = 100 + (noClicks * 15);
-                const moveX = Math.random() * (maxDistance * 2) - maxDistance;
-                const moveY = Math.random() * (maxDistance * 2) - maxDistance;
-                
-                noBtn.style.transform = `translate(${moveX}px, ${moveY}px) rotate(${Math.random() * 20 - 10}deg)`;
-                noBtn.style.transition = 'transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
-                
-                // Wyślij email za 1, 3, 5, 10 kliknięciem NIE
-                if ([1, 3, 5, 10].includes(noClicks)) {
-                    sendEmail(`kliknęła NIE (${noClicks} razy) ${noClicks >= 5 ? '😭' : '😢'}`);
-                }
-                
-                // Specjalny email po 15 kliknięciach
-                if (noClicks === 15) {
-                    sendEmail('KLIKNĘŁA NIE JUŻ 15 RAZY! 💔 Potrzebuje pomocy!');
-                }
-                
-                // Reset po wszystkich wiadomościach
-                if (noClicks >= messages.length) {
-                    noClicks = 0;
-                }
-            });
-            
-            // Przycisk NIE ucieka przy najechaniu
-            noBtn.addEventListener('mouseover', function() {
-                if (Math.random() > 0.3 && noClicks < 5) {
-                    const x = Math.random() * 120 - 60;
-                    const y = Math.random() * 120 - 60;
-                    this.style.transform = `translate(${x}px, ${y}px)`;
-                    this.style.transition = 'transform 0.3s ease';
-                }
-            });
-            
-            // Funkcja konfetti
-            function createConfetti() {
-                const confettiCount = 100;
-                const colors = ['#ff006e', '#ff4d6d', '#ff8fab', '#ffb3c6'];
-                const hearts = ['❤️', '💖', '💘', '💝', '💗', '💓', '💞'];
-                
-                for (let i = 0; i < confettiCount; i++) {
-                    setTimeout(() => {
-                        const confetti = document.createElement('div');
-                        confetti.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
-                        confetti.style.position = 'fixed';
-                        confetti.style.fontSize = (Math.random() * 25 + 20) + 'px';
-                        confetti.style.left = Math.random() * 100 + 'vw';
-                        confetti.style.top = '-50px';
-                        confetti.style.zIndex = '9999';
-                        confetti.style.pointerEvents = 'none';
-                        confetti.style.opacity = '0.9';
-                        confetti.style.color = colors[Math.floor(Math.random() * colors.length)];
-                        confetti.style.filter = `brightness(${0.8 + Math.random() * 0.4})`;
-                        
-                        const duration = Math.random() * 3 + 2;
-                        const delay = Math.random() * 0.5;
-                        
-                        confetti.style.animation = `
-                            confettiFall ${duration}s cubic-bezier(0.1, 0.8, 0.3, 1) ${delay}s forwards,
-                            confettiRotate ${duration}s linear ${delay}s forwards
-                        `;
-                        
-                        document.body.appendChild(confetti);
-                        
-                        setTimeout(() => {
-                            if (confetti.parentNode) {
-                                confetti.remove();
-                            }
-                        }, (duration + delay) * 1000);
-                        
-                    }, i * 20);
-                }
-                
-                // Style dla animacji konfetti
-                const style = document.createElement('style');
-                style.textContent = `
-                    @keyframes confettiFall {
-                        0% {
-                            transform: translateY(0) scale(0.5);
-                            opacity: 0;
-                        }
-                        10% {
-                            opacity: 1;
-                            transform: translateY(0) scale(1);
-                        }
-                        90% {
-                            opacity: 1;
-                        }
-                        100% {
-                            transform: translateY(100vh) scale(0.5);
-                            opacity: 0;
-                        }
-                    }
-                    
-                    @keyframes confettiRotate {
-                        0% {
-                            transform: rotate(0deg);
-                        }
-                        100% {
-                            transform: rotate(${Math.random() * 720}deg);
-                        }
-                    }
-                `;
-                document.head.appendChild(style);
-            }
-            
-            // Sprawdź localStorage czy już kliknięto TAK
-            window.addEventListener('load', function() {
-                const lastAction = localStorage.getItem('walentynka_ostatnia_akcja');
-                if (lastAction) {
-                    const data = JSON.parse(lastAction);
-                    console.log('Ostatnia akcja Lilki:', data);
-                    
-                    if (data.action && data.action.includes('TAK')) {
-                        questionContainer.style.display = 'none';
-                        document.querySelector('.buttons-container').style.display = 'none';
-                        successContainer.style.display = 'block';
-                        yesClicked = true;
-                    }
-                }
-            });
         });
+        
+        document.getElementById('noBtn').addEventListener('click', function() {
+            noClicks++;
+            
+            // 1. Za pierwszym razem kliknięcia NIE wyślij email
+            if (noClicks === 1) {
+                sendValentineEmail('kliknęła NIE 😢', noClicks);
+            }
+            // 2. Za 3, 5, 10 kliknięciem też wyślij
+            else if ([3, 5, 10].includes(noClicks)) {
+                sendValentineEmail(`kliknęła NIE (${noClicks} razy) ${noClicks >= 5 ? '😭' : '😔'}`, noClicks);
+            }
+            
+            // 3. Zmień wiadomość
+            const msgIndex = Math.min(noClicks - 1, messages.length - 1);
+            document.getElementById('sorry').textContent = messages[msgIndex];
+            document.getElementById('sorry').style.display = 'block';
+            
+            // 4. Powiększ przycisk TAK
+            const yesBtn = document.getElementById('yesBtn');
+            const currentSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
+            yesBtn.style.fontSize = (currentSize + 4) + 'px';
+            
+            // 5. Uciekający przycisk NIE
+            const moveX = Math.random() * 100 - 50;
+            const moveY = Math.random() * 100 - 50;
+            this.style.transform = `translate(${moveX}px, ${moveY}px)`;
+            this.style.transition = 'transform 0.3s';
+        });
+        
+        // ===== DODATKOWE EFEKTY =====
+        function createConfetti() {
+            const hearts = ['❤️', '💖', '💘', '💝', '💗'];
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+                    heart.style.position = 'fixed';
+                    heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
+                    heart.style.left = Math.random() * 100 + 'vw';
+                    heart.style.top = '-50px';
+                    heart.style.zIndex = '9999';
+                    heart.style.opacity = '0.8';
+                    
+                    document.body.appendChild(heart);
+                    
+                    // Animacja spadania
+                    const duration = Math.random() * 2 + 2;
+                    heart.style.animation = `fall ${duration}s linear forwards`;
+                    
+                    // Usuń po animacji
+                    setTimeout(() => heart.remove(), duration * 1000);
+                }, i * 100);
+            }
+            
+            // Dodaj styl animacji
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fall {
+                    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+                    100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+        
+        // ===== INICJALIZACJA =====
+        console.log('🚀 Strona walentynkowa załadowana!');
+        console.log('EmailJS skonfigurowany z kluczem:', PUBLIC_KEY);
+        console.log('Service ID:', SERVICE_ID);
+        console.log('Template ID:', TEMPLATE_ID);
+        
+        // Sprawdź czy EmailJS działa
+        if (typeof emailjs !== 'undefined') {
+            console.log('✅ EmailJS jest załadowany i gotowy');
+        } else {
+            console.log('❌ EmailJS NIE jest załadowany!');
+            alert('UWAGA: EmailJS nie został załadowany. Emails nie będą wysyłane!');
+        }
     </script>
 </body>
 </html>
