@@ -1,45 +1,386 @@
 <!DOCTYPE html>
-<html>
+<html lang="pl">
 <head>
-    <title>💘 TEST Walentynka</title>
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script>
-        // 1. Inicjalizuj EmailJS
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💘 Walentynkowe pytanie dla Lilki 💘</title>
+    
+    <!-- EmailJS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        // Inicjalizuj EmailJS z TWOIM kluczem
         emailjs.init('mwdIn3kCQ1fVhJl9u');
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         
-        // 2. Funkcja wysyłająca email
-        function sendTestEmail() {
-            console.log('🚀 Rozpoczynam wysyłanie...');
+        body {
+            background: linear-gradient(135deg, #ffafcc 0%, #ffc8dd 25%, #cdb4db 50%, #bde0fe 75%, #a2d2ff 100%);
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(255, 0, 110, 0.25);
+            border: 5px solid #ff4d6d;
+            max-width: 600px;
+            width: 95%;
+        }
+        
+        h1 {
+            color: #ff4d6d;
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+        
+        .lilki-name {
+            font-size: 48px;
+            color: #ff006e;
+            font-weight: bold;
+            margin: 20px 0;
+            text-shadow: 2px 2px 0 #ffb3c6;
+        }
+        
+        .question {
+            font-size: 32px;
+            color: #c9184a;
+            margin: 30px 0;
+            padding: 25px;
+            background: #fff0f3;
+            border-radius: 20px;
+            border: 3px dashed #ff8fab;
+        }
+        
+        .buttons {
+            margin: 40px 0;
+        }
+        
+        button {
+            font-size: 26px;
+            padding: 18px 50px;
+            margin: 15px;
+            border: none;
+            border-radius: 60px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            min-width: 160px;
+        }
+        
+        #yesBtn {
+            background: linear-gradient(145deg, #ff006e, #ff4d6d);
+            color: white;
+            border: 4px solid #ff4d6d;
+        }
+        
+        #yesBtn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(255, 0, 110, 0.3);
+        }
+        
+        #noBtn {
+            background: linear-gradient(145deg, #ffb3c6, #ffccd5);
+            color: #a4133c;
+            border: 4px solid #ff8fab;
+        }
+        
+        #noBtn:hover {
+            transform: scale(1.05);
+        }
+        
+        #success {
+            display: none;
+            margin-top: 40px;
+            animation: fadeIn 1s;
+        }
+        
+        .heart {
+            font-size: 100px;
+            color: #ff006e;
+            margin: 20px 0;
+            animation: heartbeat 1.2s infinite;
+        }
+        
+        .message {
+            font-size: 28px;
+            color: #ff006e;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        
+        .bartek {
+            font-size: 24px;
+            color: #c9184a;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        
+        #sorry {
+            color: #c9184a;
+            font-size: 22px;
+            font-weight: bold;
+            padding: 15px;
+            background: #ffebee;
+            border-radius: 15px;
+            margin-top: 20px;
+            display: none;
+        }
+        
+        /* Przycisk testowy - możesz później usunąć */
+        .test-btn {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 25px 20px;
+            }
             
+            .lilki-name {
+                font-size: 36px;
+            }
+            
+            .question {
+                font-size: 26px;
+                padding: 20px;
+            }
+            
+            button {
+                font-size: 22px;
+                padding: 15px 35px;
+                min-width: 140px;
+            }
+            
+            .heart {
+                font-size: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Przycisk testowy - USUŃ go jak wszystko będzie działać -->
+    <div class="test-btn" onclick="testEmail()">TEST Email</div>
+    
+    <div class="container">
+        <h1>Specjalnie dla:</h1>
+        <div class="lilki-name">LILKI 💝</div>
+        
+        <div class="question">
+            Czy zostaniesz moją walentynką?
+        </div>
+        
+        <div class="buttons">
+            <button id="yesBtn">TAK 💖</button>
+            <button id="noBtn">NIE</button>
+        </div>
+        
+        <div id="sorry"></div>
+        
+        <div id="success">
+            <div class="heart">❤️</div>
+            <div class="message">Wiedziałem, że się zgodzisz! 💘</div>
+            <div class="bartek">Bartek</div>
+        </div>
+    </div>
+
+    <script>
+        // ===== KONFIGURACJA EMAILJS =====
+        const SERVICE_ID = 'service_ts4zyfh';
+        const TEMPLATE_ID = 'ethgzcu';
+        const PUBLIC_KEY = 'mwdIn3kCQ1fVhJl9u';
+        
+        // ===== ZMIENNE =====
+        let noClicks = 0;
+        let yesClicked = false;
+        
+        // Wiadomości gdy kliknie NIE
+        const messages = [
+            "Nie rób mi tego... 💔",
+            "Nie możesz tak powiedzieć!",
+            "Proszę, przemyśl to! 🤔",
+            "Jesteś pewna? 🥺",
+            "Będę bardzo smutny... 😢",
+            "Serio tak mówisz? 💔",
+            "Lilki, bez Ciebie walentynki nie mają sensu!",
+            "Proszę, powiedz TAK! 🙏",
+            "Złamię Ci serce? 💘",
+            "Ostatnia szansa... TAK?",
+            "💖 DLA LILKI TYLKO TAK 💖"
+        ];
+        
+        // ===== FUNKCJA WYSYŁAJĄCA EMAIL =====
+        function sendValentineEmail(actionType, clickCount = 0) {
+            console.log('🔄 Wysyłam email:', actionType, 'kliknięcia NIE:', clickCount);
+            
+            // Dane które muszą pasować do szablonu w EmailJS
             const templateParams = {
+                answer: actionType,
+                date: new Date().toLocaleDateString('pl-PL'),
+                time: new Date().toLocaleTimeString('pl-PL'),
+                no_clicks: clickCount,
                 to_email: 'bartus056@gmail.com',
-                answer: 'TEST z kodu',
-                date: new Date().toLocaleDateString(),
-                time: new Date().toLocaleTimeString(),
-                no_clicks: 0
+                from_name: 'Strona Walentynkowa',
+                reply_to: 'noreply@walentynka.com'
             };
             
-            emailjs.send('service_ts4zyfh', 'ethgzcu', templateParams)
-                .then(response => {
-                    console.log('✅ SUKCES! Status:', response.status);
-                    alert('Email wysłany! Status: ' + response.status);
+            // Wyślij email przez EmailJS
+            emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams)
+                .then(function(response) {
+                    console.log('✅ EMAIL WYSŁANY! Status:', response.status);
+                    console.log('Odpowiedź serwera:', response.text);
                 })
-                .catch(error => {
-                    console.log('❌ BŁĄD:', error);
-                    alert('Błąd: ' + JSON.stringify(error));
+                .catch(function(error) {
+                    console.log('❌ BŁĄD WYSYŁANIA EMAIL:', error);
+                    console.log('Szczegóły błędu:', JSON.stringify(error));
                 });
         }
         
-        // 3. Automatyczny test przy ładowaniu
-        window.onload = sendTestEmail;
+        // ===== FUNKCJA TESTOWA =====
+        function testEmail() {
+            console.log('🧪 Rozpoczynam test EmailJS...');
+            alert('Testuję wysyłanie emaila... Sprawdź konsolę F12');
+            
+            sendValentineEmail('TEST z przycisku', 999);
+        }
+        
+        // ===== OBSŁUGA PRZYCISKÓW =====
+        document.getElementById('yesBtn').addEventListener('click', function() {
+            if (!yesClicked) {
+                yesClicked = true;
+                
+                // 1. Wyślij email o kliknięciu TAK
+                sendValentineEmail('KLIKNĘŁA TAK! 🎉❤️🎊', noClicks);
+                
+                // 2. Pokaż sukces
+                document.querySelector('.question').style.display = 'none';
+                document.querySelector('.buttons').style.display = 'none';
+                document.getElementById('sorry').style.display = 'none';
+                document.getElementById('success').style.display = 'block';
+                
+                // 3. Animacja przycisku TAK
+                this.style.transform = 'scale(1.5)';
+                this.style.opacity = '0.7';
+                setTimeout(() => {
+                    this.style.display = 'none';
+                }, 500);
+                
+                // 4. Dodaj konfetti
+                createConfetti();
+            }
+        });
+        
+        document.getElementById('noBtn').addEventListener('click', function() {
+            noClicks++;
+            
+            // 1. Za pierwszym razem kliknięcia NIE wyślij email
+            if (noClicks === 1) {
+                sendValentineEmail('kliknęła NIE 😢', noClicks);
+            }
+            // 2. Za 3, 5, 10 kliknięciem też wyślij
+            else if ([3, 5, 10].includes(noClicks)) {
+                sendValentineEmail(`kliknęła NIE (${noClicks} razy) ${noClicks >= 5 ? '😭' : '😔'}`, noClicks);
+            }
+            
+            // 3. Zmień wiadomość
+            const msgIndex = Math.min(noClicks - 1, messages.length - 1);
+            document.getElementById('sorry').textContent = messages[msgIndex];
+            document.getElementById('sorry').style.display = 'block';
+            
+            // 4. Powiększ przycisk TAK
+            const yesBtn = document.getElementById('yesBtn');
+            const currentSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
+            yesBtn.style.fontSize = (currentSize + 4) + 'px';
+            
+            // 5. Uciekający przycisk NIE
+            const moveX = Math.random() * 100 - 50;
+            const moveY = Math.random() * 100 - 50;
+            this.style.transform = `translate(${moveX}px, ${moveY}px)`;
+            this.style.transition = 'transform 0.3s';
+        });
+        
+        // ===== DODATKOWE EFEKTY =====
+        function createConfetti() {
+            const hearts = ['❤️', '💖', '💘', '💝', '💗'];
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+                    heart.style.position = 'fixed';
+                    heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
+                    heart.style.left = Math.random() * 100 + 'vw';
+                    heart.style.top = '-50px';
+                    heart.style.zIndex = '9999';
+                    heart.style.opacity = '0.8';
+                    
+                    document.body.appendChild(heart);
+                    
+                    // Animacja spadania
+                    const duration = Math.random() * 2 + 2;
+                    heart.style.animation = `fall ${duration}s linear forwards`;
+                    
+                    // Usuń po animacji
+                    setTimeout(() => heart.remove(), duration * 1000);
+                }, i * 100);
+            }
+            
+            // Dodaj styl animacji
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fall {
+                    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+                    100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+        
+        // ===== INICJALIZACJA =====
+        console.log('🚀 Strona walentynkowa załadowana!');
+        console.log('EmailJS skonfigurowany z kluczem:', PUBLIC_KEY);
+        console.log('Service ID:', SERVICE_ID);
+        console.log('Template ID:', TEMPLATE_ID);
+        
+        // Sprawdź czy EmailJS działa
+        if (typeof emailjs !== 'undefined') {
+            console.log('✅ EmailJS jest załadowany i gotowy');
+        } else {
+            console.log('❌ EmailJS NIE jest załadowany!');
+            alert('UWAGA: EmailJS nie został załadowany. Emails nie będą wysyłane!');
+        }
     </script>
-</head>
-<body style="background:pink; padding:50px; text-align:center;">
-    <h1>💖 TEST EmailJS</h1>
-    <p>Sprawdź konsolę (F12 → Console)</p>
-    <button onclick="sendTestEmail()" style="font-size:20px; padding:15px 30px; background:red; color:white;">
-        TESTUJ EMAIL
-    </button>
 </body>
 </html>
+
 
