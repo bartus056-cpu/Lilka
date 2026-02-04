@@ -4,14 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>💘 Walentynkowe pytanie dla Lilki 💘</title>
-    
-    <!-- EmailJS -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script type="text/javascript">
-        // Inicjalizuj EmailJS z TWOIM kluczem
-        emailjs.init('mwdIn3kCQ1fVhJl9u');
-    </script>
-    
     <style>
         * {
             margin: 0;
@@ -38,6 +30,18 @@
             border: 5px solid #ff4d6d;
             max-width: 600px;
             width: 95%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 10px;
+            background: linear-gradient(90deg, #ff006e, #ff4d6d, #ff8fab);
         }
         
         h1 {
@@ -47,37 +51,74 @@
         }
         
         .lilki-name {
-            font-size: 48px;
+            font-size: 52px;
             color: #ff006e;
-            font-weight: bold;
+            font-weight: 900;
             margin: 20px 0;
             text-shadow: 2px 2px 0 #ffb3c6;
+            background: linear-gradient(45deg, #ff006e, #ff4d6d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            padding: 10px 20px;
+            display: inline-block;
+            border-radius: 15px;
+            animation: nameGlow 2s infinite alternate;
+        }
+        
+        .question-container {
+            background: linear-gradient(145deg, #fff0f3, #fff9fb);
+            padding: 30px 25px;
+            border-radius: 20px;
+            margin: 30px 0;
+            border: 3px solid #ffb3c6;
+            position: relative;
         }
         
         .question {
-            font-size: 32px;
+            font-size: 36px;
             color: #c9184a;
-            margin: 30px 0;
-            padding: 25px;
-            background: #fff0f3;
-            border-radius: 20px;
-            border: 3px dashed #ff8fab;
+            font-weight: 800;
+            line-height: 1.3;
+            margin: 0;
         }
         
-        .buttons {
+        .question::before, .question::after {
+            content: "💖";
+            font-size: 32px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .question::before {
+            left: -40px;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .question::after {
+            right: -40px;
+            animation: float 3s ease-in-out infinite reverse;
+        }
+        
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
             margin: 40px 0;
+            flex-wrap: wrap;
         }
         
-        button {
-            font-size: 26px;
-            padding: 18px 50px;
-            margin: 15px;
-            border: none;
-            border-radius: 60px;
-            cursor: pointer;
+        .btn {
+            font-size: 28px;
             font-weight: bold;
+            padding: 20px 60px;
+            border: none;
+            border-radius: 70px;
+            cursor: pointer;
             transition: all 0.3s;
-            min-width: 160px;
+            min-width: 180px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
         }
         
         #yesBtn {
@@ -87,8 +128,8 @@
         }
         
         #yesBtn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 25px rgba(255, 0, 110, 0.3);
+            transform: scale(1.08);
+            box-shadow: 0 15px 25px rgba(255, 0, 110, 0.3);
         }
         
         #noBtn {
@@ -101,56 +142,55 @@
             transform: scale(1.05);
         }
         
-        #success {
+        #successContainer {
             display: none;
             margin-top: 40px;
             animation: fadeIn 1s;
         }
         
-        .heart {
-            font-size: 100px;
+        .success-heart {
+            font-size: 120px;
             color: #ff006e;
-            margin: 20px 0;
+            margin-bottom: 20px;
             animation: heartbeat 1.2s infinite;
         }
         
-        .message {
-            font-size: 28px;
+        .success-text {
+            font-size: 32px;
             color: #ff006e;
             font-weight: bold;
             margin: 20px 0;
+            text-shadow: 1px 1px 0 #ffb3c6;
         }
         
-        .bartek {
-            font-size: 24px;
-            color: #c9184a;
-            margin-top: 20px;
+        .bartek-signature {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px dashed #ff8fab;
+        }
+        
+        .bartek-text {
+            font-size: 28px;
+            color: #ff4d6d;
             font-weight: bold;
+            letter-spacing: 1px;
         }
         
-        #sorry {
+        #sorryMessage {
             color: #c9184a;
             font-size: 22px;
             font-weight: bold;
-            padding: 15px;
+            padding: 15px 20px;
             background: #ffebee;
             border-radius: 15px;
             margin-top: 20px;
             display: none;
         }
         
-        /* Przycisk testowy - możesz później usunąć */
-        .test-btn {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            background: #4CAF50;
-            color: white;
-            padding: 10px 15px;
-            border-radius: 5px;
-            font-size: 14px;
-            cursor: pointer;
-            z-index: 1000;
+        /* Animacje */
+        @keyframes nameGlow {
+            0% { text-shadow: 2px 2px 0 #ffb3c6; }
+            100% { text-shadow: 2px 2px 0 #ffb3c6, 0 0 20px rgba(255, 0, 110, 0.5); }
         }
         
         @keyframes heartbeat {
@@ -158,69 +198,108 @@
             50% { transform: scale(1.2); }
         }
         
+        @keyframes float {
+            0%, 100% { transform: translateY(-50%) scale(1); }
+            50% { transform: translateY(-50%) scale(1.2); }
+        }
+        
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
         
-        @media (max-width: 600px) {
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+        
+        /* Responsywność */
+        @media (max-width: 768px) {
             .container {
-                padding: 25px 20px;
+                padding: 30px 20px;
             }
             
+            .lilki-name {
+                font-size: 42px;
+            }
+            
+            .question {
+                font-size: 30px;
+            }
+            
+            .question::before, .question::after {
+                font-size: 28px;
+                left: -30px;
+                right: -30px;
+            }
+            
+            .btn {
+                font-size: 24px;
+                padding: 18px 45px;
+                min-width: 150px;
+            }
+            
+            .buttons-container {
+                gap: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
             .lilki-name {
                 font-size: 36px;
             }
             
             .question {
                 font-size: 26px;
-                padding: 20px;
             }
             
-            button {
+            .question::before, .question::after {
+                display: none;
+            }
+            
+            .buttons-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 90%;
+                max-width: 280px;
                 font-size: 22px;
-                padding: 15px 35px;
-                min-width: 140px;
-            }
-            
-            .heart {
-                font-size: 80px;
+                padding: 16px 35px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Przycisk testowy - USUŃ go jak wszystko będzie działać -->
-    <div class="test-btn" onclick="testEmail()">TEST Email</div>
-    
     <div class="container">
         <h1>Specjalnie dla:</h1>
-        <div class="lilki-name">LILKI 💝</div>
+        <div class="lilki-name">LILKI</div>
         
-        <div class="question">
-            Czy zostaniesz moją walentynką?
+        <div class="question-container">
+            <div class="question">
+                Czy zostaniesz moją walentynką?
+            </div>
         </div>
         
-        <div class="buttons">
-            <button id="yesBtn">TAK 💖</button>
-            <button id="noBtn">NIE</button>
+        <div class="buttons-container">
+            <button class="btn" id="yesBtn">TAK 💝</button>
+            <button class="btn" id="noBtn">NIE</button>
         </div>
         
-        <div id="sorry"></div>
+        <div id="sorryMessage"></div>
         
-        <div id="success">
-            <div class="heart">❤️</div>
-            <div class="message">Wiedziałem, że się zgodzisz! 💘</div>
-            <div class="bartek">Bartek</div>
+        <div id="successContainer">
+            <div class="success-heart">❤️</div>
+            <div class="success-text">Wiedziałem, że się zgodzisz! 💖</div>
+            <div class="bartek-signature">
+                <div class="bartek-text">Bartek</div>
+            </div>
         </div>
     </div>
 
     <script>
-        // ===== KONFIGURACJA EMAILJS =====
-        const SERVICE_ID = 'service_ts4zyfh';
-        const TEMPLATE_ID = 'ethgzcu';
-        const PUBLIC_KEY = 'mwdIn3kCQ1fVhJl9u';
-        
         // ===== ZMIENNE =====
         let noClicks = 0;
         let yesClicked = false;
@@ -240,145 +319,126 @@
             "💖 DLA LILKI TYLKO TAK 💖"
         ];
         
-        // ===== FUNKCJA WYSYŁAJĄCA EMAIL =====
-        function sendValentineEmail(actionType, clickCount = 0) {
-            console.log('🔄 Wysyłam email:', actionType, 'kliknięcia NIE:', clickCount);
-            
-            // Dane które muszą pasować do szablonu w EmailJS
-            const templateParams = {
-                answer: actionType,
-                date: new Date().toLocaleDateString('pl-PL'),
-                time: new Date().toLocaleTimeString('pl-PL'),
-                no_clicks: clickCount,
-                to_email: 'bartus056@gmail.com',
-                from_name: 'Strona Walentynkowa',
-                reply_to: 'noreply@walentynka.com'
-            };
-            
-            // Wyślij email przez EmailJS
-            emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams)
-                .then(function(response) {
-                    console.log('✅ EMAIL WYSŁANY! Status:', response.status);
-                    console.log('Odpowiedź serwera:', response.text);
-                })
-                .catch(function(error) {
-                    console.log('❌ BŁĄD WYSYŁANIA EMAIL:', error);
-                    console.log('Szczegóły błędu:', JSON.stringify(error));
-                });
-        }
-        
-        // ===== FUNKCJA TESTOWA =====
-        function testEmail() {
-            console.log('🧪 Rozpoczynam test EmailJS...');
-            alert('Testuję wysyłanie emaila... Sprawdź konsolę F12');
-            
-            sendValentineEmail('TEST z przycisku', 999);
-        }
-        
         // ===== OBSŁUGA PRZYCISKÓW =====
         document.getElementById('yesBtn').addEventListener('click', function() {
             if (!yesClicked) {
                 yesClicked = true;
                 
-                // 1. Wyślij email o kliknięciu TAK
-                sendValentineEmail('KLIKNĘŁA TAK! 🎉❤️🎊', noClicks);
+                // 1. Pokaż sukces
+                document.querySelector('.question-container').style.display = 'none';
+                document.querySelector('.buttons-container').style.display = 'none';
+                document.getElementById('sorryMessage').style.display = 'none';
+                document.getElementById('successContainer').style.display = 'block';
                 
-                // 2. Pokaż sukces
-                document.querySelector('.question').style.display = 'none';
-                document.querySelector('.buttons').style.display = 'none';
-                document.getElementById('sorry').style.display = 'none';
-                document.getElementById('success').style.display = 'block';
-                
-                // 3. Animacja przycisku TAK
+                // 2. Animacja przycisku TAK
                 this.style.transform = 'scale(1.5)';
-                this.style.opacity = '0.7';
+                this.style.opacity = '0.8';
+                this.style.transition = 'all 0.6s';
+                
+                // 3. Dodaj konfetti
+                createConfetti();
+                
                 setTimeout(() => {
                     this.style.display = 'none';
-                }, 500);
-                
-                // 4. Dodaj konfetti
-                createConfetti();
+                }, 600);
             }
         });
         
         document.getElementById('noBtn').addEventListener('click', function() {
             noClicks++;
             
-            // 1. Za pierwszym razem kliknięcia NIE wyślij email
-            if (noClicks === 1) {
-                sendValentineEmail('kliknęła NIE 😢', noClicks);
-            }
-            // 2. Za 3, 5, 10 kliknięciem też wyślij
-            else if ([3, 5, 10].includes(noClicks)) {
-                sendValentineEmail(`kliknęła NIE (${noClicks} razy) ${noClicks >= 5 ? '😭' : '😔'}`, noClicks);
-            }
-            
-            // 3. Zmień wiadomość
+            // 1. Zmień wiadomość
             const msgIndex = Math.min(noClicks - 1, messages.length - 1);
-            document.getElementById('sorry').textContent = messages[msgIndex];
-            document.getElementById('sorry').style.display = 'block';
+            document.getElementById('sorryMessage').textContent = messages[msgIndex];
+            document.getElementById('sorryMessage').style.display = 'block';
+            document.getElementById('sorryMessage').style.animation = 'shake 0.5s';
             
-            // 4. Powiększ przycisk TAK
+            // 2. Powiększ przycisk TAK (ale nie za bardzo)
             const yesBtn = document.getElementById('yesBtn');
             const currentSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
-            yesBtn.style.fontSize = (currentSize + 4) + 'px';
             
-            // 5. Uciekający przycisk NIE
-            const moveX = Math.random() * 100 - 50;
-            const moveY = Math.random() * 100 - 50;
-            this.style.transform = `translate(${moveX}px, ${moveY}px)`;
-            this.style.transition = 'transform 0.3s';
+            if (currentSize < 40) {
+                yesBtn.style.fontSize = (currentSize + 3) + 'px';
+                const currentPadding = parseFloat(window.getComputedStyle(yesBtn).paddingLeft);
+                yesBtn.style.padding = '20px ' + (currentPadding + 8) + 'px';
+            }
+            
+            // 3. Uciekający przycisk NIE
+            const maxDistance = 80 + (noClicks * 5);
+            const moveX = Math.random() * (maxDistance * 2) - maxDistance;
+            const moveY = Math.random() * (maxDistance * 2) - maxDistance;
+            
+            this.style.transform = `translate(${moveX}px, ${moveY}px) rotate(${Math.random() * 20 - 10}deg)`;
+            this.style.transition = 'transform 0.4s';
+            
+            // Reset po wszystkich wiadomościach
+            if (noClicks >= messages.length) {
+                noClicks = 0;
+            }
         });
         
         // ===== DODATKOWE EFEKTY =====
         function createConfetti() {
             const hearts = ['❤️', '💖', '💘', '💝', '💗'];
-            for (let i = 0; i < 30; i++) {
+            const colors = ['#ff006e', '#ff4d6d', '#ff8fab', '#ffb3c6'];
+            
+            for (let i = 0; i < 50; i++) {
                 setTimeout(() => {
                     const heart = document.createElement('div');
                     heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
                     heart.style.position = 'fixed';
-                    heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
+                    heart.style.fontSize = (Math.random() * 25 + 20) + 'px';
                     heart.style.left = Math.random() * 100 + 'vw';
                     heart.style.top = '-50px';
                     heart.style.zIndex = '9999';
-                    heart.style.opacity = '0.8';
+                    heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+                    heart.style.opacity = '0.9';
+                    heart.style.pointerEvents = 'none';
+                    
+                    const duration = Math.random() * 2 + 2;
+                    const rotation = Math.random() * 360;
+                    
+                    heart.style.animation = `
+                        fall ${duration}s linear forwards,
+                        rotate ${duration}s linear forwards
+                    `;
                     
                     document.body.appendChild(heart);
                     
-                    // Animacja spadania
-                    const duration = Math.random() * 2 + 2;
-                    heart.style.animation = `fall ${duration}s linear forwards`;
+                    setTimeout(() => {
+                        if (heart.parentNode) heart.remove();
+                    }, duration * 1000);
                     
-                    // Usuń po animacji
-                    setTimeout(() => heart.remove(), duration * 1000);
-                }, i * 100);
+                }, i * 50);
             }
             
-            // Dodaj styl animacji
+            // Dodaj style animacji
             const style = document.createElement('style');
             style.textContent = `
                 @keyframes fall {
                     0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-                    100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+                    100% { transform: translateY(100vh) rotate(${Math.random() * 360}deg); opacity: 0; }
+                }
+                @keyframes rotate {
+                    0% { transform: rotate(0deg); }
+                    100% { transform: rotate(${Math.random() * 720}deg); }
                 }
             `;
             document.head.appendChild(style);
         }
         
-        // ===== INICJALIZACJA =====
-        console.log('🚀 Strona walentynkowa załadowana!');
-        console.log('EmailJS skonfigurowany z kluczem:', PUBLIC_KEY);
-        console.log('Service ID:', SERVICE_ID);
-        console.log('Template ID:', TEMPLATE_ID);
+        // Przycisk NIE ucieka przy najechaniu
+        document.getElementById('noBtn').addEventListener('mouseover', function() {
+            if (Math.random() > 0.4 && noClicks < 5) {
+                const moveX = Math.random() * 80 - 40;
+                const moveY = Math.random() * 80 - 40;
+                this.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                this.style.transition = 'transform 0.3s';
+            }
+        });
         
-        // Sprawdź czy EmailJS działa
-        if (typeof emailjs !== 'undefined') {
-            console.log('✅ EmailJS jest załadowany i gotowy');
-        } else {
-            console.log('❌ EmailJS NIE jest załadowany!');
-            alert('UWAGA: EmailJS nie został załadowany. Emails nie będą wysyłane!');
-        }
+        // Inicjalizacja
+        console.log('💖 Strona walentynkowa gotowa!');
     </script>
 </body>
 </html>
