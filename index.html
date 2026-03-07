@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>💘 Walentynkowe pytanie dla Lilki 💘</title>
+    <title>💘 Ważne pytanie dla Lilki 💘</title>
     <style>
         * {
             margin: 0;
@@ -163,6 +163,12 @@
             text-shadow: 1px 1px 0 #ffb3c6;
         }
         
+        .success-subtext {
+            font-size: 24px;
+            color: #ff4d6d;
+            margin: 10px 0;
+        }
+        
         .bartek-signature {
             margin-top: 30px;
             padding-top: 20px;
@@ -279,7 +285,7 @@
         
         <div class="question-container">
             <div class="question">
-                Czy zostaniesz moją walentynką?
+                Czy zostaniesz moją dziewczyną?
             </div>
         </div>
         
@@ -292,7 +298,8 @@
         
         <div id="successContainer">
             <div class="success-heart">❤️</div>
-            <div class="success-text">Wiedziałem, że się zgodzisz! 💖</div>
+            <div class="success-text">Najszczęśliwszy dzień mojego życia!</div>
+            <div class="success-subtext">Dziękuję, że się zgodziłaś! 💖</div>
             <div class="bartek-signature">
                 <div class="bartek-text">Bartek</div>
             </div>
@@ -307,12 +314,11 @@
         // Wiadomości gdy kliknie NIE
         const messages = [
             "Nie rób mi tego... 💔",
-            "Nie możesz tak powiedzieć!",
             "Proszę, przemyśl to! 🤔",
             "Jesteś pewna? 🥺",
             "Będę bardzo smutny... 😢",
             "Serio tak mówisz? 💔",
-            "Lilki, bez Ciebie walentynki nie mają sensu!",
+            "Lilki, bez Ciebie nie ma sensu!",
             "Proszę, powiedz TAK! 🙏",
             "Złamię Ci serce? 💘",
             "Ostatnia szansa... TAK?",
@@ -396,12 +402,8 @@
                     heart.style.pointerEvents = 'none';
                     
                     const duration = Math.random() * 2 + 2;
-                    const rotation = Math.random() * 360;
                     
-                    heart.style.animation = `
-                        fall ${duration}s linear forwards,
-                        rotate ${duration}s linear forwards
-                    `;
+                    heart.style.animation = `fall ${duration}s linear forwards`;
                     
                     document.body.appendChild(heart);
                     
@@ -419,10 +421,6 @@
                     0% { transform: translateY(0) rotate(0deg); opacity: 1; }
                     100% { transform: translateY(100vh) rotate(${Math.random() * 360}deg); opacity: 0; }
                 }
-                @keyframes rotate {
-                    0% { transform: rotate(0deg); }
-                    100% { transform: rotate(${Math.random() * 720}deg); }
-                }
             `;
             document.head.appendChild(style);
         }
@@ -438,9 +436,10 @@
         });
         
         // Inicjalizacja
-        console.log('💖 Strona walentynkowa gotowa!');
+        console.log('💖 Strona z propozycją dla Lilki gotowa!');
     </script>
 </body>
 </html>
+
 
 
